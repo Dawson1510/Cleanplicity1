@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cleanplicity - Professional Cleaning Services</title>
+  <link rel="icon" type="image/jpg" href="images/icon.jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #f8f8f8;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff69b4;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links li {
+      display: inline;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: #ff69b4;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to bottom, #e0e0e0, #ffffff);
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .trading-hours {
+      margin: 30px auto;
+      max-width: 700px;
+    }
+
+    .trading-hours h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      color: #111;
+    }
+
+    .trading-hours table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+    }
+
+    .trading-hours th,
+    .trading-hours td {
+      padding: 8px 10px;
+      text-align: center;
+    }
+
+    /* CTA Button */
+    .cta-container {
+      margin-top: 30px;
+    }
+
+    .cta-button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #e60073;
+    }
+
+    /* Footer */
+    .main-footer {
+      background-color: #f2f2f2;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .footer-content p {
+      margin: 10px 0;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      color: #333;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #ff69b4;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        color: #333;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">Cleanplicity</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="gallary.html">Gallery</a></li>
+      </ul>
+      <button class="mobile-menu-btn" aria-label="Mobile Menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Premium Cleaning Services</h1>
+      <p class="hero-subtitle">Eco-friendly solutions for homes & businesses</p>
+
+      <div class="trading-hours">
+        <h3>Trading Hours</h3>
+        <table>
+          <tr>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+          </tr>
+          <tr>
+            <td>8am–5pm</td>
+            <td>8am–5pm</td>
+            <td>8am–5pm</td>
+            <td>8am–5pm</td>
+            <td>8am–5pm</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="cta-container">
+        <a href="booking.html" class="cta-button">Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Contact us: 068 510 1046 | WhatsApp: 068 510 1046 | South Africa</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/cleanplicity" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/cleanplicity_cleaning" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/27685101046" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+      <p>&copy; 2025 Cleanplicity. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Optional: Mobile menu toggle logic
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

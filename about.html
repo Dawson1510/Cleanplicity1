@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Cleanplicity</title>
+  <link rel="icon" type="image/jpg" href="images/icon.jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  <style>
+    /* Maintain same styles as homepage */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .navbar {
+      background-color: #f8f8f8;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff69b4;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links li {
+      display: inline;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: #ff69b4;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+    }
+
+    .hero {
+      background: linear-gradient(to bottom, #e0e0e0, #ffffff);
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    /* About-specific styles */
+    .about-content {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      color: #444;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .team-member {
+      text-align: center;
+      padding: 20px;
+      background: #f8f8f8;
+      border-radius: 8px;
+    }
+
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        color: #333;
+      }
+    }
+    .main-footer {
+      background-color: #f2f2f2;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .footer-content p {
+      margin: 10px 0;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      color: #333;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #ff69b4;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        color: #333;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">Cleanplicity</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="gallary.html">Gallery</a></li>
+      </ul>
+      <button class="mobile-menu-btn" aria-label="Mobile Menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>About Cleanplicity</h1>
+      <p class="hero-subtitle">We are not your average cleaning company</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="about-content">
+    <article>
+      <h2 class="section-title">Who We Are</h2>
+      <p class="section-text">Born to clean! Based in Centurion, we're committed to providing exceptional home & office cleaning services.</p>
+    </article>
+
+    <article>
+      <h2 class="section-title">Our Story</h2>
+      <p class="section-text">Founded in 2020, Cleanplicity started as a small team passionate about eco-friendly cleaning solutions. Today, we serve hundreds of satisfied clients across Gauteng.</p>
+    </article>
+
+    <article>
+      <h2 class="section-title">Our Mission</h2>
+      <p class="section-text">To provide exceptional cleaning services while maintaining the highest environmental standards and promoting sustainable practices in our industry.</p>
+    </article>
+
+    <section>
+      <h2 class="section-title">Meet Our Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="images/team1.jpg.png" alt="Magda - CEO">
+          <h3>Magda</h3>
+          <p>CEO & Founder</p>
+        </div>
+        <div class="team-member">
+          <img src="images/team1.jpg.png" alt="Chantel - Supervisor">
+          <h3>Chantel</h3>
+          <p>Supervisor Team 1</p>
+        </div>
+        <div class="team-member">
+          <img src="images/team1.jpg.png" alt="Chantel Dawson - Supervisor">
+          <h3>Chantel Dawson</h3>
+          <p>Supervisor Team 2</p>
+        </div>
+        <div class="team-member">
+          <img src="images/team1.jpg.png" alt="Karien - Supervisor">
+          <h3>Karien</h3>
+          <p>Supervisor Team 3</p>
+        </div>
+      </div>
+    </section>
+
+    <article>
+      <h2 class="section-title">Eco-Friendly Commitment</h2>
+      <p class="section-text">We use only environmentally safe products and sustainable practices, reducing our carbon footprint by 40% compared to traditional cleaning companies.</p>
+    </article>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Contact us: 068 510 1046 | WhatsApp: 068 510 1046 | South Africa</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/cleanplicity" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/cleanplicity_cleaning" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/27685101046" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+      <p>&copy; 2025 Cleanplicity. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
