@@ -6,7 +6,6 @@
   <title>Cleanplicity - Gallery</title>
   <link rel="icon" type="image/jpg" href="images/icon.jpg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
   <style>
     * {
       margin: 0;
@@ -33,11 +32,8 @@
       flex-wrap: wrap;
     }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #ff69b4;
-      text-decoration: none;
+    .logo img {
+      height: 40px;
     }
 
     .nav-links {
@@ -46,27 +42,15 @@
       gap: 25px;
     }
 
-    .nav-links li {
-      display: inline;
-    }
-
     .nav-links a {
       text-decoration: none;
       color: #333;
       font-weight: 500;
-      position: relative;
     }
 
     .nav-links a.active,
     .nav-links a:hover {
       color: #d3036b;
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
     }
 
     .hero {
@@ -82,7 +66,7 @@
     }
 
     .gallery-section {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto 60px;
       padding: 0 20px;
     }
@@ -99,12 +83,12 @@
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
-      margin-bottom: 30px;
     }
 
     .album {
       cursor: pointer;
       text-align: center;
+      transition: transform 0.3s ease;
     }
 
     .album img {
@@ -117,7 +101,7 @@
     }
 
     .album img:hover {
-      transform: scale(1.40 );
+      transform: perspective(600px) rotateY(8deg) scale(1.05);
     }
 
     .album p {
@@ -130,13 +114,13 @@
       display: none;
       position: fixed;
       z-index: 999;
-      padding-top: 80px;
+      padding-top: 60px;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.8);
+      overflow-y: auto;
+      background-color: rgba(0,0,0,0.9);
     }
 
     .modal-content {
@@ -144,7 +128,7 @@
       margin: auto;
       padding: 20px;
       border-radius: 10px;
-      max-width: 800px;
+      max-width: 1000px;
     }
 
     .modal-gallery {
@@ -154,7 +138,8 @@
       justify-content: center;
     }
 
-    .modal-gallery img, .modal-gallery video {
+    .modal-gallery img,
+    .modal-gallery video {
       width: 100%;
       max-width: 240px;
       border-radius: 8px;
@@ -170,6 +155,25 @@
 
     .close:hover {
       color: #000;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      max-width: 700px;
+      margin: 20px auto;
+      position: relative;
+      padding-top: 56.25%;
+    }
+
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .main-footer {
@@ -195,26 +199,14 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links {
+      .gallery-row {
         flex-direction: column;
-        gap: 15px;
-        margin-top: 10px;
-      }
-
-      .mobile-menu-btn {
-        display: block;
-        color: #333;
-      }
-
-      .gallery-row img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
+        align-items: center;
       }
 
       .modal-gallery {
         flex-direction: column;
-        align-items: self;
+        align-items: center;
       }
     }
   </style>
@@ -232,145 +224,105 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="gallery.html" class="active">Gallery</a></li>
       </ul>
-     
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>Our Work Gallery</h1>
-    </div>
+    <h1>Our Work Gallery</h1>
   </section>
 
   <!-- Gallery Sections -->
   <div class="gallery-section">
-    <!-- Office Cleaning -->
-    <h2>Office Cleaning</h2>
-    <div class="gallery-row">
-      <div class="album" onclick="openModal('office')">
-        <img src="images/Office-Park-Cleaning.jpg" alt="Office Album">
-        <p>View Album</p>
-      </div>
-    </div>
 
-    <!-- Home Cleaning -->
-    <h2>Home Cleaning</h2>
-    <div class="gallery-row">
-      <div class="album" onclick="openModal('home')">
-        <img src="images/home-cleaning-01.jpg" alt="Home Album">
-        <p>View Album</p>
-      </div>
-    </div>
+    <!-- Define Album Blocks -->
+    <script>
+      const albums = {
+        "Office Cleaning": {
+          images: [
+            "images/office-cleaning-01.JPG", "images/office-cleaning-02.JPG", "images/office-cleaning-03.JPG",
+            "images/office-cleaning-04.JPG", "images/office-cleaning-05.JPG", "images/office-cleaning-06.JPG",
+            "images/office-cleaning-07.JPG", "images/office-cleaning-08.JPG"
+          ],
+          video: "video/office-cleaning.MP4"
+        },
+        "Home Cleaning": {
+          images: [
+            "images/home-cleaning-01.JPG", "images/home-cleaning-02.JPG", "images/home-cleaning-03.JPG",
+            "images/home-cleaning-04.JPG", "images/home-cleaning-05.JPG", "images/home-cleaning-06.JPG",
+            "images/home-cleaning-07.JPG", "images/home-cleaning-08.JPG"
+          ],
+          video: "video/home-cleaning.MP4"
+        },
+        "Carpet/Tile Cleaning": {
+          images: [
+            "images/Carpet-Cleaning-01.JPG", "images/Carpet-Cleaning-02.JPG", "images/Carpet-Cleaning-03.JPG",
+            "images/Carpet-Cleaning-04.JPG", "images/Carpet-Cleaning-05.JPG", "images/Carpet-Cleaning-06.JPG",
+            "images/Carpet-Cleaning-07.JPG", "images/Carpet-Cleaning-08.JPG"
+          ],
+          video: "video/Carpet-Cleaning.MP4"
+        },
+        "Window/Solar Cleaning": {
+          images: [
+            "images/window-cleaning-01.JPG", "images/window-cleaning-02.JPG", "images/window-cleaning-03.JPG",
+            "images/window-cleaning-04.JPG", "images/window-cleaning-05.JPG", "images/window-cleaning-06.JPG",
+            "images/window-cleaning-07.JPG", "images/window-cleaning-08.JPG"
+          ],
+          video: "video/window-cleaning.MP4"
+        }
+      };
 
-    <!-- Carpet Cleaning -->
-    <h2>Carpet/Tile Cleaning</h2>
-    <div class="gallery-row">
-      <div class="album" onclick="openModal('carpet/tile')">
-        <img src="images/Carpet-Cleaning-01.jpg" alt="Carpet/Tile Album">
-        <p>View Album</p>
-      </div>
-    </div>
+      window.addEventListener('DOMContentLoaded', () => {
+        const section = document.querySelector('.gallery-section');
+        let modals = '';
 
-    <!-- Window Cleaning -->
-    <h2>Window/Solar Cleaning</h2>
-    <div class="gallery-row">
-      <div class="album" onclick="openModal('window/solar')">
-        <img src="images/window-cleaning-01.jpg" alt="Window/Solar Album">
-        <p>View Album</p>
-      </div>
-    </div>
+        Object.entries(albums).forEach(([name, data], index) => {
+          const albumId = `album${index}`;
+          const preview = data.images[0];
 
-  <!-- Modals -->
-  <div id="office" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('office')">&times;</span>
-      <h3>Office Cleaning</h3>
-      <div class="modal-gallery">
-        <img src="images/office-cleaning-01.JPG" alt="Office 1">
-        <img src="images/office-cleaning-02.jpg" alt="Office 2">
-        <img src="images/office-cleaning-03.jpg" alt="Office 3">
-        <img src="images/office-cleaning-04.jpg" alt="Office 4">
-        <img src="images/office-cleaning-05.JPG" alt="Office 5">
-        <img src="images/office-cleaning-06.JPG" alt="Office 6">
-        <img src="images/office-cleaning-07.JPG" alt="Office 7">
-        <img src="images/office-cleaning-08.JPG" alt="Office 8">
-        <div class="video-wrapper">
-          <video autoplay muted playsinline loop>
-            <source src="video/office-cleaning.MP4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>        
-    </div>
+          // Add thumbnail section
+          section.innerHTML += `
+            <h2>${name}</h2>
+            <div class="gallery-row">
+              <div class="album" onclick="openModal('${albumId}')">
+                <img src="${preview}" alt="${name} preview">
+                <p>View Album</p>
+              </div>
+            </div>
+          `;
+
+          // Add modal
+          modals += `
+            <div id="${albumId}" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeModal('${albumId}')">&times;</span>
+                <h3>${name}</h3>
+                <div class="modal-gallery">
+                  ${data.images.map(src => `<img src="${src}" alt="">`).join("")}
+                  <div class="video-wrapper">
+                    <video autoplay muted loop playsinline>
+                      <source src="${data.video}" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        section.insertAdjacentHTML('beforeend', modals);
+      });
+
+      function openModal(id) {
+        document.getElementById(id).style.display = 'block';
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+      }
+    </script>
   </div>
-
-  <div id="home" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('home')">&times;</span>
-      <h3>Home Cleaning</h3>
-      <div class="modal-gallery">
-        <img src="images/home-cleaning-01.jpg" alt="Home 1">
-        <img src="images/home-cleaning-02.jpg" alt="Home 2">
-        <img src="images/home-cleaning-03.jpg" alt="Home 3">
-        <img src="images/home-cleaning-04.JPG" alt="Home 4">
-        <img src="images/home-cleaning-05.JPG" alt="Home 5">
-        <img src="images/home-cleaning-06.JPG" alt="Home 6">
-        <img src="images/home-cleaning-07.JPG" alt="Home 7">
-        <img src="images/home-cleaning-08.JPG" alt="Home 8">
-        <div class="video-wrapper">
-          <video autoplay muted playsinline loop>
-            <source src="video/home-cleaning.MP4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        
-    </div>
-  </div>
-
-  <div id="carpet/tile" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('carpet/tile')">&times;</span>
-      <h3>Carpet/Tile Cleaning</h3>
-      <div class="modal-gallery">
-        <img src="images/Carpet-Cleaning-01.jpg" alt="Carpet 1">
-        <img src="images/Carpet-Cleaning-02.jpg" alt="Carpet 2">
-        <img src="images/Carpet-Cleaning-03.jpg" alt="Carpet 3">
-        <img src="images/Carpet-Cleaning-04.JPG" alt="Carpet 3">
-        <img src="images/Carpet-Cleaning-05.JPG" alt="Carpet 3">
-        <img src="images/Carpet-Cleaning-06.JPG" alt="Carpet 3">
-        <img src="images/Carpet-Cleaning-07.JPG" alt="Carpet 3">
-        <img src="images/Carpet-Cleaning-08.JPG" alt="Carpet 3">
-        <div class="video-wrapper">
-          <video autoplay muted playsinline loop>
-            <source src="video/Carpet-Cleaning.MP4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>        
-    </div>
-  </div>
-
-  <div id="window/solar" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('window/solar')">&times;</span>
-      <h3>Window/Solar Cleaning</h3>
-      <div class="modal-gallery">
-        <img src="images/window-cleaning-01.jpg" alt="Window 1">
-        <img src="images/window-cleaning-02.jpg" alt="Window 2">
-        <img src="images/window-cleaning-03.jpg" alt="Window 3">
-        <img src="images/window-cleaning-04.JPG" alt="Window 4">
-        <img src="images/window-cleaning-05.JPG" alt="Window 5">
-        <img src="images/window-cleaning-06.JPG" alt="Window 6">
-        <img src="images/window-cleaning-07.JPG" alt="Window 7">
-        <img src="images/window-cleaning-08.JPG" alt="Window 8">
-        <div class="video-wrapper">
-          <video autoplay muted playsinline loop>
-            <source src="video/window-cleaning.MP4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>        
-    </div>
-  </div>
-
 
   <!-- Footer -->
   <footer class="main-footer">
@@ -384,23 +336,5 @@
       <p>&copy; 2025 Cleanplicity. All rights reserved.</p>
     </div>
   </footer>
-
-  <!-- Scripts -->
-  <script>
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-
-    menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    function openModal(id) {
-      document.getElementById(id).style.display = "block";
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
-    }
-  </script>
 </body>
 </html>
