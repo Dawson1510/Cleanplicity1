@@ -7,70 +7,32 @@
   <link rel="icon" type="image/jpg" href="images/icon.jpg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fff;
-      color: #333;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fff; color: #333; }
 
     .navbar {
       background-color: #ffffff;
       padding: 20px 40px;
       border-bottom: 1px solid #ddd;
     }
-
-    .nav-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .logo img {
-      height: 40px;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-
-    .nav-links a.active,
-    .nav-links a:hover {
-      color: #d3036b;
-    }
+    .nav-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .logo img { height: 40px; }
+    .nav-links { list-style: none; display: flex; gap: 25px; }
+    .nav-links a { text-decoration: none; color: #333; font-weight: 500; }
+    .nav-links a.active, .nav-links a:hover { color: #d3036b; }
 
     .hero {
       background: linear-gradient(to bottom, #e0e0e0, #ffffff);
       padding: 100px 20px 40px;
       text-align: center;
     }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: #222;
-    }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 10px; color: #222; }
 
     .gallery-section {
       max-width: 1200px;
       margin: 0 auto 60px;
       padding: 0 20px;
     }
-
     .gallery-section h2 {
       font-size: 1.8rem;
       margin: 40px 0 20px;
@@ -90,7 +52,6 @@
       text-align: center;
       transition: transform 0.3s ease;
     }
-
     .album img {
       width: 300px;
       height: 200px;
@@ -99,11 +60,9 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s;
     }
-
     .album img:hover {
       transform: perspective(600px) rotateY(8deg) scale(1.05);
     }
-
     .album p {
       margin-top: 8px;
       color: #555;
@@ -122,7 +81,6 @@
       overflow-y: auto;
       background-color: rgba(0,0,0,0.9);
     }
-
     .modal-content {
       background-color: #fff;
       margin: auto;
@@ -137,7 +95,6 @@
       gap: 15px;
       justify-content: center;
     }
-
     .modal-gallery img,
     .modal-gallery video {
       width: 100%;
@@ -152,10 +109,7 @@
       font-weight: bold;
       cursor: pointer;
     }
-
-    .close:hover {
-      color: #000;
-    }
+    .close:hover { color: #000; }
 
     .video-wrapper {
       width: 100%;
@@ -174,6 +128,27 @@
       object-fit: cover;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      margin: -20px 0 0 -20px;
+      border: 5px solid #ccc;
+      border-top: 5px solid #d3036b;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .main-footer {
@@ -182,29 +157,17 @@
       text-align: center;
       font-size: 0.9rem;
     }
-
-    .footer-content p {
-      margin: 10px 0;
-    }
-
+    .footer-content p { margin: 10px 0; }
     .social-links a {
       margin: 0 10px;
       color: #333;
       font-size: 1.2rem;
       transition: color 0.3s;
     }
-
-    .social-links a:hover {
-      color: #ff69b4;
-    }
+    .social-links a:hover { color: #ff69b4; }
 
     @media (max-width: 768px) {
-      .gallery-row {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .modal-gallery {
+      .gallery-row, .modal-gallery {
         flex-direction: column;
         align-items: center;
       }
@@ -227,102 +190,88 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
     <h1>Our Work Gallery</h1>
   </section>
 
-  <!-- Gallery Sections -->
-  <div class="gallery-section">
+  <!-- Albums & Modals -->
+  <div class="gallery-section" id="album-section"></div>
+  <div id="modals"></div>
 
-    <!-- Define Album Blocks -->
-    <script>
-      const albums = {
-        "Office Cleaning": {
-          images: [
-            "images/office-cleaning-01.JPG", "images/office-cleaning-02.JPG", "images/office-cleaning-03.JPG",
-            "images/office-cleaning-04.JPG", "images/office-cleaning-05.JPG", "images/office-cleaning-06.JPG",
-            "images/office-cleaning-07.JPG", "images/office-cleaning-08.JPG"
-          ],
-          video: "video/office-cleaning.MP4"
-        },
-        "Home Cleaning": {
-          images: [
-            "images/home-cleaning-01.JPG", "images/home-cleaning-02.JPG", "images/home-cleaning-03.JPG",
-            "images/home-cleaning-04.JPG", "images/home-cleaning-05.JPG", "images/home-cleaning-06.JPG",
-            "images/home-cleaning-07.JPG", "images/home-cleaning-08.JPG"
-          ],
-          video: "video/home-cleaning.MP4"
-        },
-        "Carpet/Tile Cleaning": {
-          images: [
-            "images/Carpet-Cleaning-01.JPG", "images/Carpet-Cleaning-02.JPG", "images/Carpet-Cleaning-03.JPG",
-            "images/Carpet-Cleaning-04.JPG", "images/Carpet-Cleaning-05.JPG", "images/Carpet-Cleaning-06.JPG",
-            "images/Carpet-Cleaning-07.JPG", "images/Carpet-Cleaning-08.JPG"
-          ],
-          video: "video/Carpet-Cleaning.MP4"
-        },
-        "Window/Solar Cleaning": {
-          images: [
-            "images/window-cleaning-01.JPG", "images/window-cleaning-02.JPG", "images/window-cleaning-03.JPG",
-            "images/window-cleaning-04.JPG", "images/window-cleaning-05.JPG", "images/window-cleaning-06.JPG",
-            "images/window-cleaning-07.JPG", "images/window-cleaning-08.JPG"
-          ],
-          video: "video/window-cleaning.MP4"
-        }
-      };
+  <!-- Script -->
+  <script>
+    const albums = {
+      "Office Cleaning": {
+        images: [...Array(8)].map((_, i) => `images/office-cleaning-0${i + 1}.JPG`),
+        video: "video/office-cleaning.MP4"
+      },
+      "Home Cleaning": {
+        images: [...Array(8)].map((_, i) => `images/home-cleaning-0${i + 1}.JPG`),
+        video: "video/home-cleaning.MP4"
+      },
+      "Carpet/Tile Cleaning": {
+        images: [...Array(8)].map((_, i) => `images/Carpet-Cleaning-0${i + 1}.JPG`),
+        video: "video/Carpet-Cleaning.MP4"
+      },
+      "Window/Solar Cleaning": {
+        images: [...Array(8)].map((_, i) => `images/window-cleaning-0${i + 1}.JPG`),
+        video: "video/window-cleaning.MP4"
+      }
+    };
 
-      window.addEventListener('DOMContentLoaded', () => {
-        const section = document.querySelector('.gallery-section');
-        let modals = '';
+    window.addEventListener('DOMContentLoaded', () => {
+      const section = document.getElementById("album-section");
+      const modals = document.getElementById("modals");
 
-        Object.entries(albums).forEach(([name, data], index) => {
-          const albumId = `album${index}`;
-          const preview = data.images[0];
-
-          // Add thumbnail section
-          section.innerHTML += `
-            <h2>${name}</h2>
-            <div class="gallery-row">
-              <div class="album" onclick="openModal('${albumId}')">
-                <img src="${preview}" alt="${name} preview">
-                <p>View Album</p>
-              </div>
+      Object.entries(albums).forEach(([title, content], i) => {
+        const id = `modal-${i}`;
+        section.innerHTML += `
+          <h2>${title}</h2>
+          <div class="gallery-row">
+            <div class="album" onclick="openModal('${id}')">
+              <img src="${content.images[0]}" alt="${title}">
+              <p>View Album</p>
             </div>
-          `;
+          </div>
+        `;
 
-          // Add modal
-          modals += `
-            <div id="${albumId}" class="modal">
-              <div class="modal-content">
-                <span class="close" onclick="closeModal('${albumId}')">&times;</span>
-                <h3>${name}</h3>
-                <div class="modal-gallery">
-                  ${data.images.map(src => `<img src="${src}" alt="">`).join("")}
-                  <div class="video-wrapper">
-                    <video autoplay muted loop playsinline>
-                      <source src="${data.video}" type="video/mp4">
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
+        modals.innerHTML += `
+          <div id="${id}" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('${id}')">&times;</span>
+              <h3>${title}</h3>
+              <div class="modal-gallery">
+                ${content.images.map(img => `<img src="${img}" alt="">`).join('')}
+                <div class="video-wrapper">
+                  <div class="spinner"></div>
+                  <video autoplay muted loop playsinline controls oncanplaythrough="handleVideoLoad(this)">
+                    <source src="${content.video}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
             </div>
-          `;
-        });
-
-        section.insertAdjacentHTML('beforeend', modals);
+          </div>
+        `;
       });
+    });
 
-      function openModal(id) {
-        document.getElementById(id).style.display = 'block';
-      }
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
 
-      function closeModal(id) {
-        document.getElementById(id).style.display = 'none';
-      }
-    </script>
-  </div>
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function handleVideoLoad(video) {
+      const wrapper = video.parentElement;
+      const spinner = wrapper.querySelector('.spinner');
+      spinner.style.display = 'none';
+      video.style.opacity = '1';
+    }
+  </script>
 
   <!-- Footer -->
   <footer class="main-footer">

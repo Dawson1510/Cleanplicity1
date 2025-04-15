@@ -17,7 +17,6 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
       background-color: #fff;
       color: #333;
     }
@@ -35,11 +34,8 @@
       flex-wrap: wrap;
     }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #ff69b4;
-      text-decoration: none;
+    .logo img {
+      height: 40px;
     }
 
     .nav-links {
@@ -48,20 +44,16 @@
       gap: 25px;
     }
 
-    .nav-links li {
-      display: inline;
-    }
-
     .nav-links a {
       text-decoration: none;
       color: #333;
       font-weight: 500;
     }
 
-    .nav-links a.active {
+    .nav-links a.active,
+    .nav-links a:hover {
       color: #d3036b;
     }
-
     .hero {
       background: linear-gradient(to bottom, #e0e0e0, #ffffff);
       padding: 100px 20px;
@@ -114,12 +106,12 @@
     }
 
     .detail-item h3 {
-      color: #ff69b4;
+      color: #d3036b;
       margin-bottom: 10px;
     }
 
     .cta-button {
-      background-color: #ff69b4;
+      background-color: #d3036b;
       color: white;
       padding: 14px 30px;
       border: none;
@@ -132,7 +124,7 @@
     }
 
     .cta-button:hover {
-      background-color: #e60073;
+      background-color: #d3036b;
     }
     .main-footer {
       background-color: #f2f2f2;
@@ -153,7 +145,7 @@
     }
 
     .social-links a:hover {
-      color: #ff69b4;
+      color: #d3036b;
     }
 
     @media (max-width: 768px) {
