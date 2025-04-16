@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cleanplicity - Professional Cleaning Services</title>
+  <title>Cleanplicity - Home</title>
   <link rel="icon" type="image/jpg" href="images/icon.jpg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
     }
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #fff;
       color: #333;
     }
 
+    header {
+      position: relative;
+      z-index: 10;
+    }
+
     .navbar {
       background-color: #ffffff;
       padding: 20px 40px;
       border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .nav-content {
@@ -37,10 +42,44 @@
       height: 40px;
     }
 
+    .nav-toggle {
+      display: none;
+    }
+
+    .nav-toggle-label {
+      display: none;
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      position: relative;
+    }
+
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+      display: block;
+      background: #333;
+      height: 3px;
+      width: 100%;
+      border-radius: 2px;
+      position: absolute;
+    }
+
+    .nav-toggle-label span::before {
+      content: '';
+      top: -8px;
+    }
+
+    .nav-toggle-label span::after {
+      content: '';
+      top: 8px;
+    }
+
     .nav-links {
       list-style: none;
       display: flex;
       gap: 25px;
+      padding-left: 0;
     }
 
     .nav-links a {
@@ -54,71 +93,150 @@
       color: #d3036b;
     }
 
+    @media (max-width: 768px) {
+      .nav-toggle-label {
+        display: block;
+        z-index: 1001;
+      }
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        flex-direction: column;
+        align-items: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .nav-toggle:checked + .nav-toggle-label + .nav-links {
+        max-height: 300px;
+        padding-bottom: 10px;
+      }
+    }
 
-    /* Hero Section */
     .hero {
       background: linear-gradient(to bottom, #e0e0e0, #ffffff);
-      padding: 100px 20px;
+      padding: 100px 20px 40px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      background: #f4f4f4;
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(20px); }
     }
 
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 10px;
       color: #222;
+      position: relative;
+      z-index: 1;
     }
 
-    .hero-subtitle {
+    .hero p {
       font-size: 1.2rem;
-      margin-bottom: 30px;
       color: #555;
-    }
-
-    .trading-hours {
-      margin: 30px auto;
+      margin-top: 10px;
       max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .trading-hours h3 {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-      color: #111;
+    .cta-btn {
+      display: inline-block;
+      margin-top: 30px;
+      margin-right: 10px;
+      padding: 12px 25px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #d3036b;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
 
-    .trading-hours table {
-      width: 90%;
-      border-collapse: collapse;
-      font-size: 1rem;
+    .cta-btn:hover {
+      background-color: #b1025b;
+      transform: translateY(-2px);
     }
 
-    .trading-hours th,
-    .trading-hours td {
-      padding: 6px 8px;
+    main {
+      display: block;
+    }
+
+    .features-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .feature-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
       text-align: center;
     }
 
-    /* CTA Button */
+    .feature-box {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .feature-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.6s ease-in-out;
+    }
+
+    .feature-box img {
+      width: 260px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-box p {
+      margin-top: 8px;
+      color: #555;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .feature-box:hover p {
+      color: #d3036b;
+      transform: translateY(-3px);
+    }
+
     .cta-container {
-      margin-top: 30px;
+      text-align: center;
+      margin-top: 40px;
     }
 
-    .cta-button {
-      background-color: #d3036b;
-      color: white;
-      padding: 14px 30px;
-      border: none;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .cta-button:hover {
-      background-color: #d3036b;
-    }
-
-    /* Footer */
     .main-footer {
       background-color: #f2f2f2;
       padding: 30px 20px;
@@ -138,100 +256,75 @@
     }
 
     .social-links a:hover {
-      color: #d3036b;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        gap: 15px;
-        margin-top: 10px;
-      }
-
-      .mobile-menu-btn {
-        display: block;
-        color: #333;
-      }
+      color: #ff69b4;
     }
   </style>
 </head>
-
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-content">
-      <a href="index.html" class="logo"><img src="images/team.png" alt="logo"></a>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="gallary.html">Gallery</a></li>
-      </ul>
-     
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Premium Cleaning Services</h1>
-      <p class="hero-subtitle">Eco-friendly solutions for homes & businesses</p>
-
-      <div class="trading-hours">
-        <h3>Trading Hours</h3>
-        <table>
-          <tr>
-            <th>Mon</th>
-            <th>Tues</th>
-            <th>Wed</th>
-            <th>Thur</th>
-            <th>Fri</th>
-          </tr>
-          <tr>
-            <td>8am–5pm</td>
-            <td>8am–5pm</td>
-            <td>8am–5pm</td>
-            <td>8am–5pm</td>
-            <td>8am–5pm</td>
-          </tr>
-        </table>
+  <header>
+    <nav class="navbar">
+      <div class="nav-content">
+        <a href="index.html" class="logo"><img src="images/team.png" alt="Cleanplicity Logo"></a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+        </label>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
       </div>
+    </nav>
+  </header>
 
-      <!-- CTA Button -->
+  <main>
+    <section class="hero">
+      <h1>Welcome to Cleanplicity</h1>
+      <p>We bring simplicity to your cleaning needs — home or office, we've got you covered.</p>
+      <a href="contact.html" class="cta-btn">Contact Us Now</a>
+    </section>
+
+    <section class="features-section">
+      <div class="feature-row">
+        <div class="feature-box"><img src="images/office-cleaning-01.JPG" alt="Office Cleaning"><p>Office Cleaning</p></div>
+        <div class="feature-box"><img src="images/home-cleaning-01.JPG" alt="Home Cleaning"><p>Home Cleaning</p></div>
+        <div class="feature-box"><img src="images/Carpet-Cleaning-01.JPG" alt="Carpet/Tile Cleaning"><p>Carpet & Tile</p></div>
+        <div class="feature-box"><img src="images/window-cleaning-01.JPG" alt="Window Cleaning"><p>Window & Solar</p></div>
+      </div>
       <div class="cta-container">
-        <a href="contact.html" class="cta-button">Book Now</a>
+        <a href="gallery.html" class="cta-btn">Chech Our Gallery Now</a>
+        <a href="services.html" class="cta-btn">View Services</a>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer class="main-footer">
     <div class="footer-content">
       <p>Contact us: 068 510 1046 | WhatsApp: 068 510 1046 | South Africa</p>
       <div class="social-links">
-        <a href="https://www.facebook.com/cleanplicity" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://www.instagram.com/cleanplicity_cleaning" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://wa.me/27685101046" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
+        <a href="https://www.facebook.com/cleanplicity" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/cleanplicity_cleaning" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/27685101046" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
       <p>&copy; 2025 Cleanplicity. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    // Optional: Mobile menu toggle logic
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+    // Scroll animation using IntersectionObserver
+    const boxes = document.querySelectorAll('.feature-box');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
 
-    menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
+    boxes.forEach(box => observer.observe(box));
   </script>
 </body>
 </html>
